@@ -79,20 +79,47 @@
 
 // fetchData();
 
-const axelPromise = new Promise((resolve, reject) => {
-  const condition = true;
-  setTimeout(() => {
-    if (condition) {
-      resolve(fetch("https://api.escuelajs.co/api/v1/products"));
-    } else {
-      reject("URL not fetched");
-    }
-  });
-});
-
-axelPromise
-  .then((response) => response.json())
-  .then((data) => console.log(data))
-  .catch((err) => console.log(err));
-
 // const axelPromise = new Promise((resolve, reject) => {
+//   const condition = true;
+//   setTimeout(() => {
+//     if (condition) {
+//       resolve(fetch("https://api.escuelajs.co/api/v1/products"));
+//     } else {
+//       reject("URL not fetched");
+//     }
+//   });
+// });
+
+// axelPromise
+//   .then((response) => response.json())
+//   .then((data) => console.log(data))
+//   .catch((err) => console.log(err));
+
+// // const axelPromise = new Promise((resolve, reject) => {
+
+// const fetchApi = new Promise((resolve, reject) => {
+//   const url = fetch("https://api.escuelajs.co/api/v1/products");
+//   if (url != null) {
+//     resolve(url);
+//   } else {
+//     resolve("URL cannot be fetched");
+//   }
+// });
+
+// fetchApi
+//   .then((data) => data.json())
+//   .then((data) => console.log(data[1]))
+//   .catch((err) => console.log(err));
+
+const person = {
+  name: "Axel",
+};
+
+person.sayHello = function () {
+  console.log(`Hello, my name is ${this.name}`);
+};
+
+person.sayHello();
+
+const salutate = person.sayHello.bind({ name: "Rerik" });
+salutate();
