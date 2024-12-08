@@ -166,31 +166,43 @@
 
 // fetchFinalData();
 
-function fetchProductData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(fetch("https://api.escuelajs.co/api/v1/products"));
-    }, 2000);
-  });
+// function fetchProductData() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(fetch("https://api.escuelajs.co/api/v1/products"));
+//     }, 2000);
+//   });
+// }
+
+// function fetchMoreData() {
+//   return new Promise((resolve, reject) => {
+//     setTimeout(() => {
+//       resolve(fetch("https://api.escuelajs.co/api/v1/products"));
+//     }, 4000);
+//   });
+// }
+
+// async function getAllData() {
+//   try {
+//     console.log("fetching data");
+//     const allData = await Promise.all([fetchProductData(), fetchMoreData()]);
+//     const jsonData = await Promise.all(allData.map((response) => response.json()));
+//     console.log(jsonData);
+//   } catch (err) {
+//     console.log(err);
+//   }
+// }
+
+// getAllData();
+
+function* numberGenerator() {
+  yield 1;
+  yield 2;
+  yield 3;
 }
 
-function fetchMoreData() {
-  return new Promise((resolve, reject) => {
-    setTimeout(() => {
-      resolve(fetch("https://api.escuelajs.co/api/v1/products"));
-    }, 4000);
-  });
-}
-
-async function getAllData() {
-  try {
-    console.log("fetching data");
-    const allData = await Promise.all([fetchProductData(), fetchMoreData()]);
-    const jsonData = await Promise.all(allData.map((response) => response.json()));
-    console.log(jsonData);
-  } catch (err) {
-    console.log(err);
-  }
-}
-
-getAllData();
+const gen = numberGenerator();
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
+console.log(gen.next());
