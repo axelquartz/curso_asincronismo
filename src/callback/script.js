@@ -190,19 +190,50 @@
 //     console.log(jsonData);
 //   } catch (err) {
 //     console.log(err);
+//   } finally {
+//     console.log("finally");
 //   }
 // }
 
 // getAllData();
 
-function* numberGenerator() {
-  yield 1;
-  yield 2;
-  yield 3;
+// function* numberGenerator() {
+//   yield 1;
+//   yield 2;
+//   yield 3;
+// }
+
+// const gen = numberGenerator();
+// console.log(gen.next());
+// console.log(gen.next());
+// console.log(gen.next());
+// console.log(gen.next());
+
+// const challenge = require("./challenge.js");
+
+// console.log(addNums(1, 2));
+
+import fetch from "node-fetch";
+const API = "https://api.escuelajs.co/api/v1";
+
+async function fetchData(urlApi) {
+  const response = await fetch(urlApi);
+  const data = await response.json();
+  return data;
 }
 
-const gen = numberGenerator();
-console.log(gen.next());
-console.log(gen.next());
-console.log(gen.next());
-console.log(gen.next());
+const products = async (urlApi) => {
+  try {
+    const products = await fetchData(`${urlApi}/products`);
+    const product = await fetchData(`${urlApi}/products/${products[0].id}`);
+    const category = await fetchData(`${urlApi}/categories/${product.category.id}`);
+
+    console.log(products);
+    console.log(product.title);
+    console.log(category.name);
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+products(API);
